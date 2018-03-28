@@ -11,8 +11,10 @@ run: bpf.o
 	sudo tc filter add dev $(DEVICE) ingress bpf obj bpf.o verbose
 delete:
 	sudo tc filter delete dev $(DEVICE) ingress
+	sudo tc qdisc delete dev $(DEVICE) clsact
 show:
 	sudo tc filter show dev $(DEVICE) ingress
+	sudo tc qdisc show dev $(DEVICE)
 
 clean:
 	rm -f bpf.o
